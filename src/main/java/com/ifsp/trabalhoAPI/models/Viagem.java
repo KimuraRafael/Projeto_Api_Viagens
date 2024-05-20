@@ -7,36 +7,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "Veiculo")
-
-public class Veiculos {
+@Table(name="Viagens")
+public class Viagem {
 	
-
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id ;
+	private long id_Viagem;
 	
-
-	@Column(name = "Descrição_Veículo")
-	private String desricao;
+	@ManyToOne
+	@JoinColumn(name = "passagens_id", nullable = false)
+	private Passagens passagens;
 	
-	@Column(name = "Quantidade_Assentos")
-	private short qtd_Assentos;
+	@ManyToOne
+	@JoinColumn(name = "veiculos_id", nullable = false)
+	private Veiculos veiculos;
 	
-	
-	@OneToMany(mappedBy = "veiculos") 
-	private List<Viagem> viagem;
-	
-	@Deprecated
-	public Veiculos() {
-		
-	}
-
-
 }

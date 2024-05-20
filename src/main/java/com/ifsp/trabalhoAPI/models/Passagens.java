@@ -6,35 +6,45 @@ import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Passagens")
 public class Passagens {
 
+
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="id", unique = true)
 	private long id; 
 	
 	
-	private boolean passDisponivel;
-	
+	@Column(name = "valor_passagem")
 	private BigDecimal valor; 
 	
+	@Column(name = "origem_viagem")
 	private String origem;
 	
+	@Column(name = "destino_viagem")
 	private String destino;
 	
-
+	@Column(name = "Data_Inicio")
 	private LocalDateTime data_inicio;
 	
+	@Column(name = "Data_Fim")
 	private LocalDateTime data_fim;
 	
-	@ManyToOne
-	private Veiculos veiculos;
+	@OneToMany(mappedBy = "passagens")
+	private List<Viagem> viagem;
+	
 	
 	
 	public long getId() {
@@ -46,13 +56,6 @@ public class Passagens {
 		this.id = id;
 	}
 
-	public boolean isPassDisponivel() {
-		return passDisponivel;
-	}
-
-	public void setPassDisponivel(boolean passDisponivel) {
-		this.passDisponivel = passDisponivel;
-	}
 
 	public BigDecimal getValor() {
 		return valor;
@@ -94,13 +97,6 @@ public class Passagens {
 		this.data_fim = data_fim;
 	}
 
-	public Veiculos getVeiculos() {
-		return veiculos;
-	}
 
-	public void setVeiculos(Veiculos veiculos) {
-		this.veiculos = veiculos;
-	}
-	
 	
 }
