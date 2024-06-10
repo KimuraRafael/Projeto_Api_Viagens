@@ -41,4 +41,16 @@ public class ViagensService {
 		return obj;
 	}
 	
+	@Transactional
+	public Viagem update(Viagem obj) {
+		Viagem novoObj = findbyId(obj.getId_Viagem());
+		novoObj.setPassagens(novoObj.getPassagens());
+		return this.viagemRepository.save(novoObj);
+	}
+	
+	@Transactional
+	public void delete(Long id) {
+		findbyId(id);
+	}
+	
 }

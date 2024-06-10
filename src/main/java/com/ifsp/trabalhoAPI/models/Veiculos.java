@@ -30,6 +30,38 @@ public class Veiculos {
 	private short qtd_Assentos;
 	
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getDesricao() {
+		return desricao;
+	}
+
+	public void setDesricao(String desricao) {
+		this.desricao = desricao;
+	}
+
+	public short getQtd_Assentos() {
+		return qtd_Assentos;
+	}
+
+	public void setQtd_Assentos(short qtd_Assentos) {
+		this.qtd_Assentos = qtd_Assentos;
+	}
+
+	public List<Viagem> getViagem() {
+		return viagem;
+	}
+
+	public void setViagem(List<Viagem> viagem) {
+		this.viagem = viagem;
+	}
+
 	@OneToMany(mappedBy = "veiculos") 
 	private List<Viagem> viagem;
 	
