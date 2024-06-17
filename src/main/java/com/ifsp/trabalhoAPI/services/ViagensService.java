@@ -2,6 +2,8 @@ package com.ifsp.trabalhoAPI.services;
 
 import java.util.Optional;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,20 +39,29 @@ public class ViagensService {
 	public Viagem create(Viagem obj){
 		obj.setId_Viagem(0); 
 		obj = this.viagemRepository.save(obj);
-		this.passagemRepository.saveAll(obj.getPassagens());
+		this.passagemRepository.saveAll(obj.getLista_Passagens());
+		this.veiculosRepository.saveAll(obj.getLista_Veiculos());
 		return obj;
 	}
 	
 	@Transactional
 	public Viagem update(Viagem obj) {
 		Viagem novoObj = findbyId(obj.getId_Viagem());
-		novoObj.setPassagens(novoObj.getPassagens());
+		novoObj.setLista_Passagens(novoObj.getLista_Passagens());
+		novoObj.setLista_Veiculos(novoObj.getLista_Veiculos());
 		return this.viagemRepository.save(novoObj);
 	}
 	
 	@Transactional
 	public void delete(Long id) {
 		findbyId(id);
+		try {
+			this.viagemRepository.deleteById(id);
+		}catch(Exception e) {
+			
+			throw new RuntimeException("Não é possível excluir pois há entidade relacionadas!");
+			
+		}
 	}
 	
 }

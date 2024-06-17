@@ -19,20 +19,15 @@ public class Viagem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_viagen", unique = true)
+	@Column(name = "id_viagem", unique = true)
 	private long id_Viagem;
 	
-	@OneToMany
-	@JoinColumn(name = "passagens_id", nullable = false)
-	private Passagens passagens;
-	
-	@ManyToOne
-	@JoinColumn(name = "veiculos_id", nullable = false)
-	private Veiculos veiculos;
-
-	private List<Veiculos> lista_Veiculos;
-	
+	@OneToMany(mappedBy = "viagem")
 	private List<Passagens> lista_Passagens;
+	
+	@OneToMany(mappedBy = "viagem")
+	private List<Veiculos> lista_Veiculos;
+
 
 	public long getId_Viagem() {
 		return id_Viagem;
@@ -42,21 +37,7 @@ public class Viagem {
 		this.id_Viagem = id_Viagem;
 	}
 
-	public Passagens getPassagens() {
-		return passagens;
-	}
 
-	public void setPassagens(Passagens passagens) {
-		this.passagens = passagens;
-	}
-
-	public Veiculos getVeiculos() {
-		return veiculos;
-	}
-
-	public void setVeiculos(Veiculos veiculos) {
-		this.veiculos = veiculos;
-	}
 
 	public List<Veiculos> getLista_Veiculos() {
 		return lista_Veiculos;

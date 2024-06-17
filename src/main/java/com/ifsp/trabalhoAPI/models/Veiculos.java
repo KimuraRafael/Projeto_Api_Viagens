@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -29,9 +30,22 @@ public class Veiculos {
 	@Column(name = "Quantidade_Assentos")
 	private short qtd_Assentos;
 	
+	@ManyToOne
+	@JoinColumn(name = "viagem_Id")
+	private Viagem viagem;
+	
+	
 	
 	public long getId() {
 		return id;
+	}
+
+	public Viagem getViagem() {
+		return viagem;
+	}
+
+	public void setViagem(Viagem viagem) {
+		this.viagem = viagem;
 	}
 
 	public void setId(long id) {
@@ -54,21 +68,10 @@ public class Veiculos {
 		this.qtd_Assentos = qtd_Assentos;
 	}
 
-	public List<Viagem> getViagem() {
-		return viagem;
-	}
-
-	public void setViagem(List<Viagem> viagem) {
-		this.viagem = viagem;
-	}
-
-	@OneToMany(mappedBy = "veiculos") 
-	private List<Viagem> viagem;
 	
-	@Deprecated
-	public Veiculos() {
-		
-	}
+
+
+
 
 
 }

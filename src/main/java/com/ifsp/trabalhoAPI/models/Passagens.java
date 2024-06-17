@@ -21,7 +21,6 @@ import jakarta.persistence.Table;
 public class Passagens {
 
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="id", unique = true)
@@ -46,6 +45,23 @@ public class Passagens {
 	@ManyToOne
 	@JoinColumn(name = "id_viagem")	
 	private Viagem viagem;
+	
+	
+	public Passagens() {
+		
+	}
+	
+	public Passagens(long id, BigDecimal valor, String origem, String destino, LocalDateTime data_inicio,
+			LocalDateTime data_fim, Viagem viagem) {
+		super();
+		this.id = id;
+		this.valor = valor;
+		this.origem = origem;
+		this.destino = destino;
+		this.data_inicio = data_inicio;
+		this.data_fim = data_fim;
+		this.viagem = viagem;
+	}
 	
 	
 	
@@ -97,6 +113,14 @@ public class Passagens {
 
 	public void setData_fim(LocalDateTime data_fim) {
 		this.data_fim = data_fim;
+	}
+
+	public Viagem getViagem() {
+		return viagem;
+	}
+
+	public void setViagem(Viagem viagem) {
+		this.viagem = viagem;
 	}
 
 
