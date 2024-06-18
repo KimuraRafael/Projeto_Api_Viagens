@@ -2,6 +2,8 @@ package com.ifsp.trabalhoAPI.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,7 +40,8 @@ public class Viagem {
 	}
 
 
-
+	
+	@JsonIgnore
 	public List<Veiculos> getLista_Veiculos() {
 		return lista_Veiculos;
 	}
@@ -47,6 +50,7 @@ public class Viagem {
 		this.lista_Veiculos = lista_Veiculos;
 	}
 
+	@JsonIgnore	
 	public List<Passagens> getLista_Passagens() {
 		return lista_Passagens;
 	}
