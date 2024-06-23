@@ -10,5 +10,4 @@ import com.ifsp.trabalhoAPI.models.Veiculos;
 @Repository
 public interface VeiculosRepository extends JpaRepository<Veiculos, Long>{
 
-	List<Veiculos> findByid(Long id);
 }

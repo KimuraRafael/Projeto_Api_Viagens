@@ -13,7 +13,5 @@ import java.util.List;
 public interface PassagensRepository extends JpaRepository<Passagens, Long>{
 	
 
-	List<Passagens> findByid(Long id);
 
-	void saveAll(Passagens passagens);
 }

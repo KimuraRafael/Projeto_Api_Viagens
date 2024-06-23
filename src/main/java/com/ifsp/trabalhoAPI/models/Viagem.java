@@ -24,6 +24,10 @@ public class Viagem {
 	@Column(name = "id_viagem", unique = true)
 	private long id_Viagem;
 	
+	@Column(name = "Descrição_Viagem")
+	private String descricao; 
+	
+
 	@OneToMany(mappedBy = "viagem")
 	private List<Passagens> lista_Passagens;
 	
@@ -40,6 +44,13 @@ public class Viagem {
 	}
 
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 	
 	@JsonIgnore
 	public List<Veiculos> getLista_Veiculos() {

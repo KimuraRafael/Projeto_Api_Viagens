@@ -36,9 +36,9 @@ public class ViagensService {
 
 	
 	@Transactional
-	public Viagem create(Viagem obj){
-		obj.setId_Viagem(0); 
+	public Viagem create(Viagem obj){ 
 		obj = this.viagemRepository.save(obj);
+		obj.setDescricao(obj.getDescricao());
 		this.passagemRepository.saveAll(obj.getLista_Passagens());
 		this.veiculosRepository.saveAll(obj.getLista_Veiculos());
 		return obj;
@@ -47,6 +47,7 @@ public class ViagensService {
 	@Transactional
 	public Viagem update(Viagem obj) {
 		Viagem novoObj = findbyId(obj.getId_Viagem());
+		novoObj.setDescricao(novoObj.getDescricao());
 		novoObj.setLista_Passagens(novoObj.getLista_Passagens());
 		novoObj.setLista_Veiculos(novoObj.getLista_Veiculos());
 		return this.viagemRepository.save(novoObj);

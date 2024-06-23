@@ -23,8 +23,6 @@ public class PassagensService {
 	private ViagensService viagemService;
 	
 	
-	
-	
 	public Passagens findbyId(Long id) {
 		Optional<Passagens> passagem = this.passagensRepository.findById(id);
 		return passagem.orElseThrow(() -> new RuntimeException(
